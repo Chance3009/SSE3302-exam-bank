@@ -7,12 +7,11 @@ const router = useRouter();
 
 const isLoggedIn = ref(true);
 
-// runs after firebase is initialized
 onAuthStateChanged(getAuth(), function (user) {
   if (user) {
-    isLoggedIn.value = true; // if we have a user
+    isLoggedIn.value = true;
   } else {
-    isLoggedIn.value = false; // if we do not
+    isLoggedIn.value = false;
   }
 });
 
@@ -27,6 +26,8 @@ const handleSignOut = () => {
     <nav>
       <router-link to="/"> Home </router-link> |
       <span v-if="isLoggedIn">
+        <router-link to="/courses-list"> Courses </router-link> |
+        <router-link to="/upload-paper"> Upload Paper </router-link> |
         <button @click="handleSignOut">Logout</button>
       </span>
       <span v-else>

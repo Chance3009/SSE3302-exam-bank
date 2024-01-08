@@ -15,9 +15,24 @@ const router = createRouter({
       component: () => import("../views/SignIn.vue"),
     },
     {
-        path: "/courses-list",
-        component: () => import("../views/Course.vue"),
-      },
+      path: "/courses-list",
+      name: "courses-list",
+      component: () => import("../views/Courses.vue"),
+    },
+    {
+      path: "/papers-list/:courseId",
+      name: "papers-list",
+      component: () => import("../views/Papers.vue"),
+    },
+    {
+      path: "/questions-list/:paperId",
+      name: "questions-list",
+      component: () => import("../views/Questions.vue"),
+    },
+    {
+      path: "/upload-paper",
+      component: () => import("../views/UploadPaper.vue"),
+    },
   ],
 });
 

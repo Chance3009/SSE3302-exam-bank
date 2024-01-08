@@ -3,19 +3,19 @@
   <input type="text" placeholder="Email" v-model="email" />
   <input type="password" placeholder="Password" v-model="password" />
   <p v-if="errMsg">{{ errMsg }}</p>
-  <button @click="signIn">Submit</button>
+  <button @click="signIn">Sign In</button>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useRouter } from "vue-router"; 
+import { useRouter } from "vue-router";
 
 const email = ref("");
 const password = ref("");
-const errMsg = ref(); 
+const errMsg = ref();
 
-const router = useRouter(); 
+const router = useRouter();
 
 const signIn = () => {
   signInWithEmailAndPassword(getAuth(), email.value, password.value)
