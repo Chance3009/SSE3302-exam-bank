@@ -7,7 +7,6 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { defineProps } from "vue";
 
 const props = defineProps(["course"]);
 

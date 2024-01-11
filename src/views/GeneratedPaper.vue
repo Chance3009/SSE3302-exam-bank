@@ -17,6 +17,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import html2pdf from "html2pdf.js";
 
 const router = useRouter();
 const courseCode = router.currentRoute.value.params.courseCode;
@@ -25,27 +26,31 @@ const questions = JSON.parse(
 );
 
 const downloadGeneratedPaper = () => {
-  const blobContent = generateBlobContent(questions);
+  const htmlContent = generateHtmlContent(questions);
 
-  const blob = new Blob([blobContent], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
+  const pdfOptions = {
+    margin: 10,
+    filename: `GeneratedPaper_${courseCode}_${new Date().toLocaleDateString()}.pdf`,
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+  };
 
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `GeneratedPaper_${courseCode}.txt`;
-  a.click();
-
-  URL.revokeObjectURL(url);
+  html2pdf().from(htmlContent).set(pdfOptions).save();
 };
 
-const generateBlobContent = (questions) => {
-  let content = `Generated Paper for ${courseCode}\n\n`;
+const generateHtmlContent = (questions) => {
+  let content = `
+    <body>
+      <h1 style="font-size: 3.2em; line-height: 1.1; color: black;text-align: center;">Generated Paper for ${courseCode}</h1><br><br>`;
 
   questions.forEach((question, index) => {
-    content += `Question ${index + 1}:\n`;
-    content += `${question.description}\n\n`;
+    content += `<div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5); transition: 0.3s; background-color: rgb(43, 41, 41); margin: 10px; padding: 1em 2em; display: block; color: white; width: 100%;">Question ${
+      index + 1
+    }:<br>${question.description}</div><br><br>`;
   });
 
+  content += "</body>";
   return content;
 };
 </script>
