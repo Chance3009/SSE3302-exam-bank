@@ -28,6 +28,7 @@
 import { useRouter } from "vue-router";
 import html2pdf from "html2pdf.js";
 
+
 const router = useRouter();
 const courseCode = router.currentRoute.value.params.courseCode;
 const questions = JSON.parse(
@@ -50,15 +51,35 @@ const downloadGeneratedPaper = () => {
 
 const generateHtmlContent = (questions) => {
   let content = `
-    <body>
-      <h1 style="font-size: 3.2em; line-height: 1.1; color: black;text-align: center;">Generated Paper for ${courseCode}</h1><br><br>`;
+    <body style="font-family: 'Times New Roman', serif; color: black;">
+      <header style="text-align: center; margin-bottom: 20px;">
+        <h1 style="color: black;">${courseCode} Test Paper</h1>
+        <p style="color: black;">Date: ${new Date().toLocaleDateString()}</p>
+        <p style="color: black;">Duration: 2 Hours</p>
+      </header>
+      <section style="margin-bottom: 20px;">
+        <h2 style="color: black;">Instructions:</h2>
+        <p style="color: black;">Read each question carefully. Answer within the space provided below each question.</p>
+      </section>`;
 
   questions.forEach((question, index) => {
-    content += `<div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5); transition: 0.3s; background-color: rgb(43, 41, 41); margin: 10px; padding: 1em 2em; display: block; color: white; width: 100%;">Question ${index + 1
-      }:<br>${question.description}</div><br><br>`;
+    content += `
+      <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); margin: 10px; padding: 1em 2em; display: block; color: black; width: 100%;">
+        <strong>Question ${index + 1}:</strong><br>${question.description}
+      </div>
+      <div style="height: 15px;"></div> <!-- Space before the line -->
+      <hr style="border: none; border-top: 1px solid black;"> <!-- Black line -->
+      <div style="height: 15px;"></div> <!-- Space after the line -->
+      <br>`;
   });
 
-  content += "</body>";
+  content += `
+      <footer style="text-align: center; margin-top: 20px;">
+        <p style="color: black;">End of Paper</p>
+      </footer>
+    </body>`;
   return content;
 };
+
+
 </script>
