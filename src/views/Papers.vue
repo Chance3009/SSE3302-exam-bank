@@ -9,7 +9,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { coursesRef, examsRef, quesRef } from "../firebase/db.js";
-import { doc, query, where, getDocs, setDoc } from "firebase/firestore";
+import { doc, query, where, getDocs } from "firebase/firestore";
 import { useRouter } from "vue-router";
 import PaperCard from "../components/PaperCard.vue";
 
@@ -45,15 +45,15 @@ const generatePaper = async (courseCode) => {
     };
 
     const selectedQuestions = getRandomQuestions(questions, 2);
+    const jsonSelectedQuestions = JSON.stringify(selectedQuestions);
 
     console.log(
       "Paper generated successfully with questions:",
       selectedQuestions
     );
-
     router.push({
       name: "generated-paper",
-      params: { courseCode, selectedQuestions },
+      params: { courseCode, jsonSelectedQuestions },
     });
   } catch (error) {
     console.error("Error generating paper:", error);

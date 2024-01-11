@@ -30,7 +30,7 @@ const router = createRouter({
       component: () => import("../views/Questions.vue"),
     },
     {
-      path: "/generated-paper/:courseCode",
+      path: "/generated-paper/:courseCode:jsonSelectedQuestions",
       name: "generated-paper",
       component: () => import("../views/GeneratedPaper.vue"),
     },

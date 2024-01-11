@@ -1,15 +1,28 @@
 <template>
   <h1>Home</h1>
   <h2>Just a home, access more function by register/login</h2>
-  <h3>Till 8/1, I have finished a few function as belows:</h3>
+  <h3>Till 11/1, I have completed a few function as belows:</h3>
   <ul>
     <li>Configure Firebase Authentication</li>
     <li>Display list of courses</li>
     <li>Upload new paper (Without the function of adding question)</li>
-    <li>Display list of papers for a specific course after clicking on the respective course button</li>
-    <li>Display list of questions for a specific paper after clicking on the respective paper button</li>
+    <li>
+      Display list of papers for a specific course after clicking on the
+      respective course button
+    </li>
+    <li>
+      Display list of questions for a specific paper after clicking on the
+      respective paper button
+    </li>
+    <li>Generate new paper (for view)</li>
+    <li>Download the generated paper as txt file</li>
   </ul>
-  <p>Just to clarify, for now I just throw everything into views and write everything as individual file, but certain files should be classfied as components instead, so who are available please help to organize the project file structure, make it less cluttered lah.</p>
+  <p>
+    Just to clarify, for now I just throw everything into views and write
+    everything as individual file, but certain files should be classfied as
+    components instead, so who are available please help to organize the project
+    file structure, make it less cluttered lah. Need to refactor.
+  </p>
 </template>
 
 <script setup>
