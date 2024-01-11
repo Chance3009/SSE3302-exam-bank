@@ -44,7 +44,7 @@ const generatePaper = async (courseCode) => {
       return shuffled.slice(0, count);
     };
 
-    const selectedQuestions = getRandomQuestions(questions, 2);
+    const selectedQuestions = getRandomQuestions(questions, 5);
     const jsonSelectedQuestions = JSON.stringify(selectedQuestions);
 
     console.log(
