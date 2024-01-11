@@ -1,5 +1,3 @@
-
-
 <template>
   <h1>
     {{ courseCode }} {{ year }} Test
@@ -46,7 +44,6 @@ import { ref, onMounted } from "vue";
 import { quesRef, examsRef } from "../firebase/db.js";
 import { doc, query, where, getDocs, setDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
-import EditQuestion from "../components/EditQuestion.vue";
 
 const questions = ref([]);
 const router = useRouter();
