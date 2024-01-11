@@ -3,15 +3,24 @@
     <h1>Generated Paper</h1>
     <section id="paper-details">
       <p>Course Code: {{ courseCode }}</p>
-      <div
-        v-for="(question, index) in questions"
-        :key="question.id"
-        class="question"
-      >
-        {{ index + 1 }}. {{ question.description }}
-      </div>
+      <button @click="downloadGeneratedPaper">Download Generated Paper</button>
+      <h3>Question Bank</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Question</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(question, index) in questions" :key="question.id">
+            <td>{{ index + 1 }}</td>
+            <td>{{ question.description }}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
-    <button @click="downloadGeneratedPaper">Download Generated Paper</button>
+
   </div>
 </template>
 
@@ -45,9 +54,8 @@ const generateHtmlContent = (questions) => {
       <h1 style="font-size: 3.2em; line-height: 1.1; color: black;text-align: center;">Generated Paper for ${courseCode}</h1><br><br>`;
 
   questions.forEach((question, index) => {
-    content += `<div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5); transition: 0.3s; background-color: rgb(43, 41, 41); margin: 10px; padding: 1em 2em; display: block; color: white; width: 100%;">Question ${
-      index + 1
-    }:<br>${question.description}</div><br><br>`;
+    content += `<div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5); transition: 0.3s; background-color: rgb(43, 41, 41); margin: 10px; padding: 1em 2em; display: block; color: white; width: 100%;">Question ${index + 1
+      }:<br>${question.description}</div><br><br>`;
   });
 
   content += "</body>";
