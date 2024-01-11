@@ -13,6 +13,7 @@
   </section>
 </template>
 
+
 <script setup>
 import { ref, onMounted } from "vue";
 import { coursesRef } from "../firebase/db.js";
@@ -29,14 +30,14 @@ onMounted(async () => {
   });
 });
 
-const selectCourse = async (courseId) => {
-  console.log("Selected Course ID:", courseId);
-  const isValidCourseId = courses.value.some(
-    (course) => course.id === courseId
+const selectCourse = async (courseCode) => {
+  console.log("Selected Course ID:", courseCode);
+  const isValidcourseCode = courses.value.some(
+    (course) => course.id === courseCode
   );
 
-  if (isValidCourseId) {
-    router.push({ name: "papers-list", params: { courseId } });
+  if (isValidcourseCode) {
+    router.push({ name: "papers-list", params: { courseCode } });
   } else {
     console.error("Invalid course ID");
   }

@@ -20,7 +20,7 @@ const router = createRouter({
       component: () => import("../views/Courses.vue"),
     },
     {
-      path: "/papers-list/:courseId",
+      path: "/papers-list/:courseCode",
       name: "papers-list",
       component: () => import("../views/Papers.vue"),
     },
@@ -28,6 +28,11 @@ const router = createRouter({
       path: "/questions-list/:paperId",
       name: "questions-list",
       component: () => import("../views/Questions.vue"),
+    },
+    {
+      path: "/generated-paper/:courseCode",
+      name: "generated-paper",
+      component: () => import("../views/GeneratedPaper.vue"),
     },
     {
       path: "/upload-paper",

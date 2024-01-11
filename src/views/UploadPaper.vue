@@ -1,8 +1,8 @@
 <template>
     <div>
       <h1>Add new paper</h1>
-      <form>
-        <div class="paper-form">
+      <form id="paper-form">
+        <div>
           <label for="newPaperCourse">Course</label>
           <input
             type="text"
