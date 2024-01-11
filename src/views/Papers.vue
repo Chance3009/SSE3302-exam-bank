@@ -2,14 +2,7 @@
   <h1>Exam Papers of {{ courseCode }}</h1>
   <button @click="generatePaper(courseCode)">Generate Paper</button>
   <section id="papers">
-    <button
-      v-for="paper in papers || []"
-      :key="paper.id"
-      class="card"
-      @click="selectPaper(paper.id)"
-    >
-      {{ paper.year }} Test {{ paper.test }}
-    </button>
+    <PaperCard v-for="paper in papers" :key="paper.id" :paper="paper" />
   </section>
 </template>
 
@@ -18,6 +11,7 @@ import { ref, onMounted } from "vue";
 import { coursesRef, examsRef, quesRef } from "../firebase/db.js";
 import { doc, query, where, getDocs, setDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
+import PaperCard from "../components/PaperCard.vue";
 
 const papers = ref([]);
 const router = useRouter();
@@ -32,10 +26,6 @@ const fetchPapers = async () => {
 };
 
 onMounted(fetchPapers);
-
-const selectPaper = (paperId) => {
-  router.push({ name: "questions-list", params: { paperId } });
-};
 
 const generatePaper = async (courseCode) => {
   try {
