@@ -104,35 +104,3 @@ const editQuestion = (question) => {
 };
 </script>
 
-
-<style>
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border: 1px solid #000000;
-  padding: 8px;
-}
-
-th {
-  background-color: #4a4a4a;
-}
-
-button img {
-  width: 20px;
-  height: 20px;
-}
-
-
-
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24
-}
-</style>

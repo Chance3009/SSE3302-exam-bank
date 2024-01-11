@@ -1,5 +1,17 @@
 <template>
   <h1>Home</h1>
+  <div class="search-bar">
+    <input type="text" v-model="searchQuery" placeholder="Search for papers..." @input="performSearch">
+    <button @click="performSearch">Search</button>
+  </div>
+  <div class="search-results">
+    <div v-for="item in filteredItems" :key="item.id" class="search-item">
+      {{ item.title }}
+    </div>
+  </div>
+
+
+
   <h2>Just a home, access more function by register/login</h2>
   <h3>Till 11/1, I have completed a few function as belows:</h3>
   <ul>
@@ -40,3 +52,5 @@ onMounted(async () => {
   });
 });
 </script>
+
+
