@@ -1,31 +1,44 @@
+
+
 <template>
   <h1>
     {{ courseCode }} {{ year }} Test
     {{ test }}
   </h1>
-  <section id="questions">
-    <div v-for="question in questions" :key="question.id" class="question">
-      {{ question.quesNo }} . {{ question.description }}
-    </div>
 
-    <form id="question-form">
-      <div>
-        <input
-          type="text"
-          placeholder="Question No."
-          v-model="newQuesNo"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Question Description"
-          v-model="newDescription"
-          required
-        />
-      </div>
-      <button @click.prevent="addNewQuestion">Create</button>
-    </form>
-  </section>
+
+  <form id="question-form">
+    <div>
+      <input type="text" placeholder="Question No." v-model="newQuesNo" required />
+      <input type="text" placeholder="Question Description" v-model="newDescription" required />
+    </div>
+    <button @click.prevent="addNewQuestion">Create</button>
+  </form>
+
+
+  <h2>Questions List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Question</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="question in questions" :key="question.id">
+        <td>{{ question.quesNo }}</td>
+        <td>{{ question.description }}</td>
+        <td>
+          <button @click="editQuestion(question)" class="icon-button">
+            <span class="material-symbols-outlined">edit</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <EditQuestion :show="isModalOpen" :question="editingQuestion" @close="isModalOpen = false" @edit="handleEdit" />
 </template>
 
 <script setup>
@@ -33,6 +46,7 @@ import { ref, onMounted } from "vue";
 import { quesRef, examsRef } from "../firebase/db.js";
 import { doc, query, where, getDocs, setDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
+import EditQuestion from "../components/EditQuestion.vue";
 
 const questions = ref([]);
 const router = useRouter();
@@ -44,6 +58,9 @@ const test = paperId.split("-")[2];
 
 const newQuesNo = ref("");
 const newDescription = ref("");
+
+
+const editingQuestion = ref(null);
 
 const fetchQuestions = async () => {
   try {
@@ -79,4 +96,43 @@ const addNewQuestion = async () => {
     console.error("Error adding document:", error);
   }
 };
+
+const editQuestion = (question) => {
+  editingQuestion.value = question;
+  newQuesNo.value = question.quesNo;
+  newDescription.value = question.description;
+};
 </script>
+
+
+<style>
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+
+th {
+  background-color: #4a4a4a;
+}
+
+button img {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+</style>
