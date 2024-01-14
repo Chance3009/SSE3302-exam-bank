@@ -5,15 +5,23 @@
       {{ test }}
     </h1>
 
-
     <form id="question-form">
       <div>
-        <input type="text" placeholder="Question No." v-model="newQuesNo" required />
-        <input type="text" placeholder="Question Description" v-model="newDescription" required />
+        <input
+          type="text"
+          placeholder="Question No."
+          v-model="newQuesNo"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Question Description"
+          v-model="newDescription"
+          required
+        />
       </div>
       <button @click.prevent="addNewQuestion">Create</button>
     </form>
-
 
     <h2>Questions List</h2>
     <table>
@@ -37,7 +45,12 @@
       </tbody>
     </table>
 
-    <EditQuestion :show="isModalOpen" :question="editingQuestion" @close="isModalOpen = false" @edit="handleEdit" />
+    <EditQuestion
+      :show="isModalOpen"
+      :question="editingQuestion"
+      @close="isModalOpen = false"
+      @edit="handleEdit"
+    />
   </div>
 </template>
 
@@ -57,7 +70,6 @@ const test = paperId.split("-")[2];
 
 const newQuesNo = ref("");
 const newDescription = ref("");
-
 
 const editingQuestion = ref(null);
 
@@ -102,4 +114,3 @@ const editQuestion = (question) => {
   newDescription.value = question.description;
 };
 </script>
-
