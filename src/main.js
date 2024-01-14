@@ -3,7 +3,7 @@ import router from "./router";
 import "./styles.css";
 import jQuery from "jquery";
 import "bootstrap";
-import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/css/bootstrap.css";
 import App from "./App.vue";
 import { initializeApp } from "firebase/app";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
