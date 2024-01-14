@@ -24,50 +24,90 @@ const handleSignOut = () => {
 <template>
   <div>
     <nav class="navbar">
-      <router-link class="nav-link" to="/">
-        <img src="./assets/SEExam.png" alt="Logo" style="height: 30px; vertical-align: middle; margin-right: 5px;" />
-        <span>SE EXAM BANK</span> </router-link> |
-      <span v-if="isLoggedIn">
-        <router-link class="nav-btn" to="/courses-list">Courses</router-link> |
-        <router-link class="nav-btn" to="/upload-paper">Upload Paper</router-link> |
-        <button class="nav-btn" @click="handleSignOut">Logout</button>
-      </span>
-      <span v-else>
-        <router-link class="nav-btn" to="/register">Register</router-link> |
-        <router-link class="nav-btn" to="/sign-in">Login</router-link>
-      </span>
+      <div class="nav-left">
+        <router-link class="nav-logo" to="/">
+          <img src="./assets/SEExam.png" alt="Logo" class="logo" />
+          SE EXAM BANK
+        </router-link>
+        <span v-if="isLoggedIn">
+          <router-link class="nav-item" to="/courses-list">Courses</router-link></span>
+        <span v-if="isLoggedIn">
+          <router-link class="nav-item" to="/upload-paper">Upload Paper</router-link>
+        </span>
+      </div>
+      <div class="nav-right" v-if="isLoggedIn">
+        <button class="nav-item" @click="handleSignOut">Logout</button>
+      </div>
+      <div class="nav-right" v-else>
+        <router-link class="nav-item" to="/register">Register</router-link>
+        <router-link class="nav-item" to="/sign-in">Login</router-link>
+      </div>
     </nav>
     <router-view />
   </div>
 </template>
 
+
+
 <style>
 .navbar {
   display: flex;
-  justify-content: space-around;
-  background-color: #f5f5f5;
-}
-
-.nav-btn,
-.nav-link {
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
   padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 10px;
-  background-color: white;
+}
+
+.nav-logo,
+.nav-item {
+  display: flex;
+  align-items: center;
+  color: #333;
   text-decoration: none;
-  color: black;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  margin-right: 15px;
 }
 
-.nav-btn:hover {
-  background-color: #e0e0e0;
-
+.logo {
+  height: 30px;
+  margin-right: 10px;
 }
 
-.nav-link {
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  padding: 5px 15px;
   background-color: transparent;
   border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-item:hover {
+  color: #af3eec;
+}
+
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-left,
+  .nav-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-logo,
+  .nav-item {
+    margin-right: 0;
+  }
 }
 </style>
+
+

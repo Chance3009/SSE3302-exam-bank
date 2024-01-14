@@ -1,8 +1,10 @@
 <template>
-  <h1>Create an Account</h1>
-  <input type="text" placeholder="Email" v-model="email" />
-  <input type="password" placeholder="Password" v-model="password" />
-  <button @click="register">Register</button>
+  <div class="content-container">
+    <h1>Create an Account</h1>
+    <input type="text" placeholder="Email" v-model="email" />
+    <input type="password" placeholder="Password" v-model="password" />
+    <button @click="register">Register</button>
+  </div>
 </template>
 
 <script setup>
@@ -26,3 +28,24 @@ const register = () => {
     });
 };
 </script>
+
+
+<style scoped>
+.content-container {
+  margin: 0 auto;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.content-container input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.content-container button {
+  width: 100%;
+}
+</style>

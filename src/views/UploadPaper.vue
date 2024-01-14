@@ -1,27 +1,19 @@
 <template>
-  <div>
-    <h1>Add new paper</h1>
-    <form id="paper-form">
-      <div>
-        <label for="newPaperCourse">Course</label>
-        <input
-          type="text"
-          placeholder="Add course code here"
-          v-model="course"
-          required
-        />
-        <label for="newPaperYear">Year</label>
-        <input
-          type="text"
-          placeholder="Year published"
-          v-model="year"
-          required
-        />
-        <label for="newPaperTest">Test</label>
-        <input type="int" placeholder="Test?" v-model="test" required />
-      </div>
-      <button @click.prevent="addNewPaper">Create</button>
-    </form>
+  <div class="content-container">
+    <div>
+      <h1>Add new paper</h1>
+      <form id="paper-form">
+        <div>
+          <label for="newPaperCourse">Course</label>
+          <input type="text" placeholder="Add course code here" v-model="course" required />
+          <label for="newPaperYear">Year</label>
+          <input type="text" placeholder="Year published" v-model="year" required />
+          <label for="newPaperTest">Test</label>
+          <input type="int" placeholder="Test?" v-model="test" required />
+        </div>
+        <button @click.prevent="addNewPaper">Create</button>
+      </form>
+    </div>
   </div>
 </template>
 

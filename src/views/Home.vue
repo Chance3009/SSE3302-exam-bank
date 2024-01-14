@@ -1,5 +1,5 @@
 <template>
-  <h1>Home</h1>
+  <h1>ONLINE EXAM BANK SYSTEM</h1>
   <div class="search-bar">
     <input type="text" v-model="searchQuery" placeholder="Search for papers..." @input="performSearch">
     <button @click="performSearch">Search</button>
