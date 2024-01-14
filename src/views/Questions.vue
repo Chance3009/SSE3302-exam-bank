@@ -1,5 +1,3 @@
-
-
 <template>
   <h1>
     {{ courseCode }} {{ year }} Test
