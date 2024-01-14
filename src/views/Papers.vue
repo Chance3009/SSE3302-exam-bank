@@ -1,50 +1,52 @@
 <template>
-  <div>
-    <h1>Exam Papers of {{ courseCode }}</h1>
-    <button @click="openGeneratePaperModal" class="btn btn-primary">
-      Generate Paper
-    </button>
-    <section id="papers">
-      <PaperCard v-for="paper in papers" :key="paper.id" :paper="paper" />
-    </section>
+  <div id="app">
+    <div>
+      <h1>Exam Papers of {{ courseCode }}</h1>
+      <button @click="openGeneratePaperModal" class="btn btn-primary">
+        Generate Paper
+      </button>
+      <section id="papers">
+        <PaperCard v-for="paper in papers" :key="paper.id" :paper="paper" />
+      </section>
 
-    <div v-show="showGeneratePaperModal" id="quesNoModal" class="modal fade" tabindex="-1" role="dialog"
-      aria-labelledby="generatePaperModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="generatePaperModalLabel">
-              Generate Paper
-            </h5>
-            <button type="button" class="close" @click="closeGeneratePaperModal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>How many questions do you want to generate?</p>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="questionCount" id="questionCount1" value="3"
-                v-model="selectedQuestionCount" />
-              <label class="form-check-label" for="questionCount1">3</label>
+      <div v-show="showGeneratePaperModal" id="quesNoModal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="generatePaperModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="generatePaperModalLabel">
+                Generate Paper
+              </h5>
+              <button type="button" class="close" @click="closeGeneratePaperModal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="questionCount" id="questionCount2" value="5"
-                v-model="selectedQuestionCount" />
-              <label class="form-check-label" for="questionCount2">5</label>
+            <div class="modal-body">
+              <p>How many questions do you want to generate?</p>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="questionCount" id="questionCount1" value="3"
+                  v-model="selectedQuestionCount" />
+                <label class="form-check-label" for="questionCount1">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="questionCount" id="questionCount2" value="5"
+                  v-model="selectedQuestionCount" />
+                <label class="form-check-label" for="questionCount2">5</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="questionCount" id="questionCount3" value="7"
+                  v-model="selectedQuestionCount" />
+                <label class="form-check-label" for="questionCount3">7</label>
+              </div>
             </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="questionCount" id="questionCount3" value="7"
-                v-model="selectedQuestionCount" />
-              <label class="form-check-label" for="questionCount3">7</label>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" @click="closeGeneratePaperModal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary" @click="generatePaper">
+                Generate
+              </button>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" @click="closeGeneratePaperModal">
-              Close
-            </button>
-            <button type="button" class="btn btn-primary" @click="generatePaper">
-              Generate
-            </button>
           </div>
         </div>
       </div>
@@ -85,6 +87,7 @@ const closeGeneratePaperModal = () => {
   showGeneratePaperModal.value = false;
   $("#quesNoModal").modal("hide");
 };
+
 
 const generatePaper = async () => {
   $(".fade").css("display", "none");
@@ -156,6 +159,13 @@ html {
   -webkit-tap-highlight-color: transparent
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 article,
 aside,
 figcaption,
@@ -178,9 +188,8 @@ body {
 }
 
 #app {
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: left;
+  min-height: 100%;
+  overflow-y: auto;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
