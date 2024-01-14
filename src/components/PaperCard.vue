@@ -1,6 +1,6 @@
 <template>
   <button class="card" @click="selectPaper(paper.id)">
-    {{ paper.year }} Test {{ paper.test }}
+    {{ String(paper.id).split("-")[0] }} {{ paper.year }} Test {{ paper.test }}
   </button>
 </template>
 
