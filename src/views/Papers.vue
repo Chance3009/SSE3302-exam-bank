@@ -79,13 +79,11 @@ onMounted(fetchPapers);
 const openGeneratePaperModal = () => {
   showGeneratePaperModal.value = true;
   $("#quesNoModal").modal("show");
-  $(".fade").css("display", "block");
 };
 
 const closeGeneratePaperModal = () => {
   showGeneratePaperModal.value = false;
   $("#quesNoModal").modal("hide");
-  $(".fade").css("display", "none");
 };
 
 const generatePaper = async () => {

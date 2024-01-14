@@ -73,7 +73,6 @@ button:focus-visible {
   background-color: #f9f9f9;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
 }
 
 body {
@@ -81,7 +80,6 @@ body {
   display: block;
   min-width: 320px;
   min-height: 100vh;
-
 }
 
 #app {
