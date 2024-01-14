@@ -91,6 +91,12 @@ onMounted(fetchQuestions);
 
 const addNewQuestion = async () => {
   try {
+    if (newQuesNo.value.trim() == "" || newDescription.value.trim() == "") {
+      console.error("Question No. and Description are required.");
+      return;
+    }
+    console.log(newQuesNo.value);
+    console.log(newDescription.value);
     const quesDocRef = doc(quesRef, paperId + "-" + newQuesNo.value);
 
     await setDoc(quesDocRef, {
