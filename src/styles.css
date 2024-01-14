@@ -66,9 +66,28 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.top-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #f9f9f9;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+body {
+  margin: 0;
+  display: block;
+  min-width: 320px;
+  min-height: 100vh;
+
+}
+
 #app {
   margin: 0 auto;
-  text-align: center;
+  padding: 2rem;
+  text-align: left;
 }
 
 section {
@@ -158,13 +177,17 @@ button img {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 500px;
-  /* Adjust as per your design */
+  max-width: 2000px;
   margin: auto;
 }
 
 .search-bar input {
   flex-grow: 1;
   margin-right: 10px;
-  /* Spacing between input and button */
+}
+
+.content-container {
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 20px;
 }

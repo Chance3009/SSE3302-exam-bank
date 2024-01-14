@@ -23,65 +23,92 @@ const handleSignOut = () => {
 
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <router-link class="navbar-brand" to="/">ECLIPSE RED</router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item" :class="{ active: $route.path === '/' }">
-            <router-link to="/" class="nav-link">Home</router-link>
-          </li>
-          <li v-if="isLoggedIn" class="nav-item">
-            <router-link to="/courses-list" class="nav-link"
-              >Courses</router-link
-            >
-          </li>
-          <li v-if="isLoggedIn" class="nav-item">
-            <router-link to="/upload-paper" class="nav-link"
-              >Upload Paper</router-link
-            >
-          </li>
-        </ul>
-
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form>
-
-        <span v-if="isLoggedIn" class="ml-md-auto">
-          <button @click="handleSignOut" class="btn btn-outline-light ml-2">
-            Logout
-          </button>
+    <nav class="navbar">
+      <div class="nav-left">
+        <router-link class="nav-logo" to="/">
+          <img src="./assets/SEExam.png" alt="Logo" class="logo" />
+          SE EXAM BANK
+        </router-link>
+        <span v-if="isLoggedIn">
+          <router-link class="nav-item" to="/courses-list">Courses</router-link></span>
+        <span v-if="isLoggedIn">
+          <router-link class="nav-item" to="/upload-paper">Upload Paper</router-link>
         </span>
-        <span v-else class="ml-md-auto">
-          <router-link to="/register" class="btn btn-outline-light ml-2"
-            >Register</router-link
-          >
-          <router-link to="/sign-in" class="btn btn-outline-light ml-2"
-            >Login</router-link
-          >
-        </span>
+      </div>
+      <div class="nav-right" v-if="isLoggedIn">
+        <button class="nav-item" @click="handleSignOut">Logout</button>
+      </div>
+      <div class="nav-right" v-else>
+        <router-link class="nav-item" to="/register">Register</router-link>
+        <router-link class="nav-item" to="/sign-in">Login</router-link>
       </div>
     </nav>
 
     <router-view />
   </div>
 </template>
+
+
+
+<style>
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+}
+
+.nav-logo,
+.nav-item {
+  display: flex;
+  align-items: center;
+  color: #333;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.logo {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  padding: 5px 15px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-item:hover {
+  color: #af3eec;
+}
+
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-left,
+  .nav-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-logo,
+  .nav-item {
+    margin-right: 0;
+  }
+}
+</style>
+
+

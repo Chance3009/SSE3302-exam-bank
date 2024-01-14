@@ -1,26 +1,28 @@
 <template>
-  <div>
-    <h1>Generated Paper</h1>
-    <section id="paper-details">
-      <p>Course Code: {{ courseCode }}</p>
-      <button @click="downloadGeneratedPaper">Download Generated Paper</button>
-      <h3>Question Bank</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>No.</th>
-            <th>Question</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(question, index) in questions" :key="question.id">
-            <td>{{ index + 1 }}</td>
-            <td>{{ question.description }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+  <div class="content-container">
+    <div>
+      <h1>Generated Paper</h1>
+      <section id="paper-details">
+        <p>Course Code: {{ courseCode }}</p>
+        <button @click="downloadGeneratedPaper">Download Generated Paper</button>
+        <h3>Question Bank</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Question</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(question, index) in questions" :key="question.id">
+              <td>{{ index + 1 }}</td>
+              <td>{{ question.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
+    </div>
   </div>
 </template>
 

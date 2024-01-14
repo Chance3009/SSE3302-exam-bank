@@ -1,42 +1,44 @@
 <template>
-  <h1>
-    {{ courseCode }} {{ year }} Test
-    {{ test }}
-  </h1>
+  <div class="content-container">
+    <h1>
+      {{ courseCode }} {{ year }} Test
+      {{ test }}
+    </h1>
 
 
-  <form id="question-form">
-    <div>
-      <input type="text" placeholder="Question No." v-model="newQuesNo" required />
-      <input type="text" placeholder="Question Description" v-model="newDescription" required />
-    </div>
-    <button @click.prevent="addNewQuestion">Create</button>
-  </form>
+    <form id="question-form">
+      <div>
+        <input type="text" placeholder="Question No." v-model="newQuesNo" required />
+        <input type="text" placeholder="Question Description" v-model="newDescription" required />
+      </div>
+      <button @click.prevent="addNewQuestion">Create</button>
+    </form>
 
 
-  <h2>Questions List</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>No.</th>
-        <th>Question</th>
-        <th>Edit</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="question in questions" :key="question.id">
-        <td>{{ question.quesNo }}</td>
-        <td>{{ question.description }}</td>
-        <td>
-          <button @click="editQuestion(question)" class="icon-button">
-            <span class="material-symbols-outlined">edit</span>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <h2>Questions List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Question</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="question in questions" :key="question.id">
+          <td>{{ question.quesNo }}</td>
+          <td>{{ question.description }}</td>
+          <td>
+            <button @click="editQuestion(question)" class="icon-button">
+              <span class="material-symbols-outlined">edit</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  <EditQuestion :show="isModalOpen" :question="editingQuestion" @close="isModalOpen = false" @edit="handleEdit" />
+    <EditQuestion :show="isModalOpen" :question="editingQuestion" @close="isModalOpen = false" @edit="handleEdit" />
+  </div>
 </template>
 
 <script setup>
