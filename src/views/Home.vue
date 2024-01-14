@@ -26,13 +26,13 @@ const searchQuery = ref("");
 const papers = ref([]);
 
 const performSearch = async () => {
-  const query = searchQuery.value.toUpperCase();
+  const queryString = searchQuery.value.toUpperCase();
 
   try {
     const q = query(
       examsRef,
-      where("__name__", ">=", `${query}`),
-      where("__name__", "<", `${query}\uf8ff`)
+      where("__name__", ">=", `${queryString}`),
+      where("__name__", "<", `${queryString}\uf8ff`)
     );
     const snapshot = await getDocs(q);
     papers.value = snapshot.docs.map((paper) => ({
@@ -44,8 +44,4 @@ const performSearch = async () => {
   }
 };
 
-onMounted(() => {
-  // You can perform an initial search on component mount if needed
-  // performSearch();
-});
 </script>
