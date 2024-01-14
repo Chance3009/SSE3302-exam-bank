@@ -81,13 +81,13 @@ onMounted(fetchPapers);
 const openGeneratePaperModal = () => {
   showGeneratePaperModal.value = true;
   $("#quesNoModal").modal("show");
-  $(".fade").css("display", "block"); 
+  $(".fade").css("display", "block");
 };
 
 const closeGeneratePaperModal = () => {
   showGeneratePaperModal.value = false;
   $("#quesNoModal").modal("hide");
-  $(".fade").css("display", "none"); 
+  $(".fade").css("display", "none");
 };
 
 
@@ -6556,18 +6556,25 @@ label {
 }
 
 button {
-  border-radius: 0
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  margin: 1em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 
-button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color
+button:hover {
+  border-color: #646cff;
 }
 
-
-button,
-input {
-  overflow: visible
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 button,
