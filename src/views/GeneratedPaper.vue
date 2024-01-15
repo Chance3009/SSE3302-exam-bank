@@ -5,7 +5,7 @@
       <section id="paper-details">
         <p>Course Code: {{ courseCode }}</p>
         <button @click="downloadGeneratedPaper">Download Generated Paper</button>
-        <h3>Question Bank</h3>
+        <h3>Preview</h3>
         <table>
           <thead>
             <tr>
