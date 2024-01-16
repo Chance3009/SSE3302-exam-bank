@@ -31,11 +31,13 @@ router-link:hover:not(.active) {
 }
 
 body {
+  height: 100%;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  overflow: auto;
+}
+
+html {
+  height: 100%;
 }
 
 h1 {
@@ -79,12 +81,16 @@ body {
   display: block;
   min-width: 320px;
   min-height: 100vh;
+  overflow: auto;
 }
 
 #app {
   margin: 0 auto;
   padding: 2rem;
   text-align: left;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 section {
