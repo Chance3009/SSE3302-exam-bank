@@ -7,21 +7,13 @@
 
     <form id="question-form">
       <div>
-        <input
-          type="text"
-          placeholder="Question No."
-          v-model="newQuesNo"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Question Description"
-          v-model="newDescription"
-          required
-        />
+        <input type="text" placeholder="Question No." s v-model="newQuesNo" required />
+        <input type="text" placeholder="Question Description" v-model="newDescription" required />
       </div>
       <button @click.prevent="addNewQuestion">Create</button>
     </form>
+
+    <DownloadPaperButton :questions="questions" :courseCode="courseCode" :isGenerated="false" />
 
     <h2>Questions List</h2>
     <table>
@@ -45,12 +37,7 @@
       </tbody>
     </table>
 
-    <EditQuestion
-      :show="isModalOpen"
-      :question="editingQuestion"
-      @close="isModalOpen = false"
-      @edit="handleEdit"
-    />
+    <EditQuestion :show="isModalOpen" :question="editingQuestion" @close="isModalOpen = false" @edit="handleEdit" />
   </div>
 </template>
 
@@ -59,6 +46,8 @@ import { ref, onMounted } from "vue";
 import { quesRef, examsRef } from "../firebase/db.js";
 import { doc, query, where, getDocs, setDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
+import DownloadPaperButton from "../components/DownloadPaperButton.vue";
+import EditQuestion from "../components/EditQuestion.vue";
 
 const questions = ref([]);
 const router = useRouter();
@@ -72,6 +61,8 @@ const newQuesNo = ref("");
 const newDescription = ref("");
 
 const editingQuestion = ref(null);
+const isModalOpen = ref(false);
+const handleEdit = ref(false);
 
 const fetchQuestions = async () => {
   try {
